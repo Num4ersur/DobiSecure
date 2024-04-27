@@ -1,0 +1,111 @@
+<!-- nope.html -->
+<html>
+  <head>
+    <title>Blocked Page</title>
+    <style>
+      body {
+        background-color: #f2f2f2;
+        color: #333;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+      }
+      
+      #block-icon {
+        width: 64px;
+        height: 64px;
+        background-image: url(block-icon.png);
+        background-size: cover;
+        display: inline-block;
+        margin-right: 10px;
+        vertical-align: middle;
+      }
+      
+      h1 {
+        font-size: 32px;
+        margin: 20px 0;
+      }
+      
+      p {
+        margin: 10px 0;
+      }
+      
+      hr {
+        border: none;
+        border-top: 1px solid #ccc;
+        margin: 20px 0;
+      }
+      
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        text-align: center;
+      }
+      
+      .button {
+        background-color: #333;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 10px;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      
+      .button:hover {
+        background-color: #555;
+      }
+      
+      .error {
+        color: red;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+      
+      .blocked-urls {
+        margin-top: 20px;
+        text-align: left;
+      }
+      
+      .blocked-urls li {
+        margin: 10px 0;
+      }
+      
+      .blocked-urls li:before {
+        content: "⛔ ";
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <span id="block-icon"></span>
+      <h1>This page has been blocked</h1>
+      <p>The blocked URL is: <strong>{{url}}</strong></p>
+      <p>The reason for the block is that it contains unsafe things.</p>
+      <hr>
+      <p>This page has been blocked by DobiBlocker, a official extension for DobiVM.</p>
+      <button class="button" onclick="unblockPage()">Go back</button>
+      <div class="error" id="error-message"></div>
+      <ul class="blocked-urls" id="blocked-urls-list"></ul>
+    </div>
+
+    <script>
+function unblockPage() {
+  const previousPage = document.referrer;
+  if (previousPage) {
+    window.history.back();
+  } else {
+    alert("There are no previous pages to go back to.");
+  }
+}
+    </script>
+  </body>
+</html>
